@@ -48,6 +48,32 @@ const STYLE = `
     transition: none;
   }
 }
+/*
+ * A rail with two links in it holds two controls, and a control a thumb has to
+ * hit is 44px or it is a miss. The links take that height where the pointer is
+ * coarse; a mouse keeps the 11px line it has always had.
+ *
+ * The width comes from padding and the padding is given back as negative
+ * margin, so each link's margin box is the size it was: the gutter, the gap
+ * between the right-hand items and the rule above them all stay where they
+ * are, and only the area that answers a tap is bigger. The bar itself is the
+ * one thing that grows, from 40px to 45 - the 44px control and the rule above
+ * it - because a bar cannot be shorter than the controls inside it.
+ */
+@media (pointer: coarse) {
+  [data-taylorurl-bar] {
+    min-height: 44px;
+  }
+  [data-taylorurl-bar] a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 0.5rem;
+    margin-inline: -0.5rem;
+  }
+}
 `
 
 const HOME = 'https://www.taylorurl.com'
