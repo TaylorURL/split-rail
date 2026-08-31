@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+*.iml
+.fleet/
+.intelligence/
+INTELLIGENCE.md
