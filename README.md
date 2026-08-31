@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2026.35.4-000000?style=for-the-badge" alt="Version 2026.35.4" />
+  <img src="https://img.shields.io/badge/version-2026.36.0-000000?style=for-the-badge" alt="Version 2026.36.0" />
   <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
   <img src="https://img.shields.io/badge/dependencies-none-000000?style=for-the-badge" alt="No dependencies" />
 </p>
