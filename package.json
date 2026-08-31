@@ -1,0 +1,23 @@
+{
+  "name": "@taylorurl/split-rail",
+  "version": "2026.35.4",
+  "description": "The attribution rail that closes every TaylorURL site.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaylorURL/split-rail.git"
+  }
+}
