@@ -90,15 +90,27 @@ function link(key, href, ...children) {
  *
  * @param {{version?: string, year?: number}} props
  *   `version` is whatever build string the project already publishes, and is
- *   left off by a project that publishes none. `year` is for a server-rendered
- *   page, which can hand the rail the year its own render used rather than let
- *   the two straddle midnight.
+ *   left off by a project that publishes none. `year` is for a page that wants
+ *   to name its own, and is rarely needed: the rail reads the year in the zone
+ *   every site under this bar is run from, so a server render and the browser
+ *   that hydrates it already agree.
  */
+// Every site this bar closes is run from Texas. Read off the machine instead,
+// a build in UTC stamps next year into the markup through the last hours of
+// December, and the browser that hydrates it disagrees.
+const ZONE = 'America/Chicago'
+
+function currentYear() {
+  return Number(
+    new Intl.DateTimeFormat('en-CA', { timeZone: ZONE, year: 'numeric' }).format(new Date())
+  )
+}
+
 export default function SplitRail({ version, year } = {}) {
   const right = [
     link('s', STATUS, 'Status'),
     version ? h('span', { key: 'v' }, version) : null,
-    h('span', { key: 'y', suppressHydrationWarning: true }, year || new Date().getFullYear()),
+    h('span', { key: 'y', suppressHydrationWarning: true }, year || currentYear()),
   ].filter(Boolean)
 
   return h(
