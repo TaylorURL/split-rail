@@ -116,7 +116,7 @@ export default function SplitRail({ version, year } = {}) {
   return h(
     'div',
     { 'data-taylorurl-bar': true },
-    h('style', null, STYLE),
+    h('style', { dangerouslySetInnerHTML: { __html: STYLE } }),
     link('h', HOME, 'Built by ', h('strong', { key: 'm' }, 'TaylorURL')),
     h('div', { 'data-tu-right': true }, right)
   )
