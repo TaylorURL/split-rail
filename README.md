@@ -7,6 +7,9 @@
   One React component, imported by every project,<br />
   so changing the bar changes every site at once.
 </p>
+<p align="center">
+  <sub>Published for reading. Proprietary — see <a href="LICENSE.md">LICENSE.md</a>. Outside contributions are not accepted.</sub>
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-2026.36.4-000000?style=for-the-badge" alt="Version 2026.36.4" />
@@ -41,7 +44,7 @@ version, and a site takes a change by moving the dependency.
 ## Install
 
 ```bash
-npm install github:TaylorURL/split-rail#v2026.35.1
+npm install github:TaylorURL/split-rail#v2026.36.0
 ```
 
 Pin the tag. Every consuming site does, which is what makes a new rail something a
@@ -83,31 +86,41 @@ consuming sites build with `react-scripts`, which does not transpile JSX inside
 
 ## Checking a change
 
-`rail-test.mjs` renders the component to static markup, with a version and
-without, and prints the result along with the attributes the stack checklist's
-rail probe looks for. It is run by hand against a checkout that has `react` and
-`react-dom` installed:
+`test/render.mjs` renders the component to static markup and asserts each marker
+the stack checklist's rail probe reads the bar by, alongside the version, year
+and colour behaviour the component promises. It names every case it ran and
+exits non-zero on a failure.
+
+`rail-test.mjs` renders the same markup and prints it. It asserts nothing and
+sets no exit code, so read the output; it is for looking at a change rather than
+gating one.
+
+Both are run by hand against a checkout that has `react` and `react-dom`
+installed:
 
 ```bash
 npm install --no-save react react-dom
+node test/render.mjs
 node rail-test.mjs
 ```
 
-It prints; it asserts nothing and sets no exit code, so read the output. The
-package declares no `test` script, and CI installs the package and stops there.
+The package declares no `test` script, and CI installs the package and stops
+there.
 
 ## Project structure
 
 ```
 split-rail/
-├── src/index.js      The component, its stylesheet, and the two links it carries
-├── rail-test.mjs     Hand-run render check
-└── package.json      Exports src/index.js directly; React is a peer dependency
+├── src/index.js         The component, its stylesheet, and the two links it carries
+├── test/render.mjs      The markup assertions a change has to keep passing
+├── rail-test.mjs        Hand-run render print
+├── .github/workflows/   CI (the required `check` context) and the attribution gate
+└── package.json         Exports src/index.js directly; React is a peer dependency
 ```
 
 ## License
 
-Copyright (c) 2026 Trenton Taylor. All rights reserved.
+Copyright (c) 2026 TaylorURL LLC. All rights reserved. See [LICENSE.md](LICENSE.md).
 
 <br />
 
