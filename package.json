@@ -1,6 +1,6 @@
 {
   "name": "@taylorurl/split-rail",
-  "version": "2026.36.5",
+  "version": "2026.36.6",
   "description": "The attribution rail that closes every TaylorURL site.",
   "type": "module",
   "main": "./src/index.js",
