@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2026.36.5-000000?style=for-the-badge" alt="Version 2026.36.5" />
+  <img src="https://img.shields.io/badge/version-2026.36.6-000000?style=for-the-badge" alt="Version 2026.36.6" />
   <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
   <img src="https://img.shields.io/badge/dependencies-none-000000?style=for-the-badge" alt="No dependencies" />
 </p>
@@ -91,17 +91,12 @@ the stack checklist's rail probe reads the bar by, alongside the version, year
 and colour behaviour the component promises. It names every case it ran and
 exits non-zero on a failure.
 
-`rail-test.mjs` renders the same markup and prints it. It asserts nothing and
-sets no exit code, so read the output; it is for looking at a change rather than
-gating one.
-
-Both are run by hand against a checkout that has `react` and `react-dom`
+It is run by hand against a checkout that has `react` and `react-dom`
 installed:
 
 ```bash
 npm install --no-save react react-dom
 node test/render.mjs
-node rail-test.mjs
 ```
 
 The package declares no `test` script, and CI installs the package and stops
@@ -113,7 +108,6 @@ there.
 split-rail/
 ├── src/index.js         The component, its stylesheet, and the two links it carries
 ├── test/render.mjs      The markup assertions a change has to keep passing
-├── rail-test.mjs        Hand-run render print
 ├── .github/workflows/   CI (the required `check` context) and the attribution gate
 └── package.json         Exports src/index.js directly; React is a peer dependency
 ```
