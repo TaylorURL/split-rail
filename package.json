@@ -12,6 +12,12 @@
     "src"
   ],
   "sideEffects": false,
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node test/render.mjs"
+  },
   "peerDependencies": {
     "react": ">=17"
   },
@@ -19,5 +25,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TaylorURL/split-rail.git"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "prettier": "^3.9.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }
