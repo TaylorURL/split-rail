@@ -100,7 +100,7 @@ npm test
 something to render with. Neither reaches a consuming site: that takes React
 from its own tree, through the peer dependency.
 
-Formatting and lint read the same two files:
+Formatting and lint run over the whole tree:
 
 ```bash
 npm run format:check
