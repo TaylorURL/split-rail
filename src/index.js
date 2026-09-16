@@ -83,6 +83,17 @@ function link(key, href, ...children) {
   return h('a', { key, href, target: '_blank', rel: 'noopener noreferrer' }, ...children)
 }
 
+// Every site this bar closes is run from Texas. Read off the machine instead,
+// a build in UTC stamps next year into the markup through the last hours of
+// December, and the browser that hydrates it disagrees.
+const ZONE = 'America/Chicago'
+
+function currentYear() {
+  return Number(
+    new Intl.DateTimeFormat('en-CA', { timeZone: ZONE, year: 'numeric' }).format(new Date())
+  )
+}
+
 /**
  * The rail takes its colours from the element above it, so its place is inside
  * the footer element. At the app root it inherits the page body instead and
@@ -95,17 +106,6 @@ function link(key, href, ...children) {
  *   every site under this bar is run from, so a server render and the browser
  *   that hydrates it already agree.
  */
-// Every site this bar closes is run from Texas. Read off the machine instead,
-// a build in UTC stamps next year into the markup through the last hours of
-// December, and the browser that hydrates it disagrees.
-const ZONE = 'America/Chicago'
-
-function currentYear() {
-  return Number(
-    new Intl.DateTimeFormat('en-CA', { timeZone: ZONE, year: 'numeric' }).format(new Date())
-  )
-}
-
 export default function SplitRail({ version, year } = {}) {
   const right = [
     link('s', STATUS, 'Status'),

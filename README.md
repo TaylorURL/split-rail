@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2026.36.6-000000?style=for-the-badge" alt="Version 2026.36.6" />
+  <img src="https://img.shields.io/badge/version-2026.38.0-000000?style=for-the-badge" alt="Version 2026.38.0" />
   <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
   <img src="https://img.shields.io/badge/dependencies-none-000000?style=for-the-badge" alt="No dependencies" />
 </p>
@@ -91,16 +91,24 @@ the stack checklist's rail probe reads the bar by, alongside the version, year
 and colour behaviour the component promises. It names every case it ran and
 exits non-zero on a failure.
 
-It is run by hand against a checkout that has `react` and `react-dom`
-installed:
-
 ```bash
-npm install --no-save react react-dom
-node test/render.mjs
+npm install
+npm test
 ```
 
-The package declares no `test` script, and CI installs the package and stops
-there.
+`react` and `react-dom` are development dependencies, so the render has
+something to render with. Neither reaches a consuming site: that takes React
+from its own tree, through the peer dependency.
+
+Formatting and lint run over the whole tree:
+
+```bash
+npm run format:check
+npm run lint
+```
+
+CI runs all three on every pull request, and `check` is the required context on
+both branches.
 
 ## Project structure
 
@@ -108,6 +116,7 @@ there.
 split-rail/
 ├── src/index.js         The component, its stylesheet, and the two links it carries
 ├── test/render.mjs      The markup assertions a change has to keep passing
+├── eslint.config.js     The lint rules; .prettierrc holds the formatting ones
 ├── .github/workflows/   CI (the required `check` context) and the attribution gate
 └── package.json         Exports src/index.js directly; React is a peer dependency
 ```
