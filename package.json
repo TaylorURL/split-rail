@@ -1,7 +1,7 @@
 {
   "name": "@taylorurl/split-rail",
-  "version": "2026.38.0",
-  "description": "The attribution rail that closes every TaylorURL site.",
+  "version": "2026.44.0",
+  "description": "Footer credit bar for TaylorURL sites, as a React component",
   "type": "module",
   "main": "./src/index.js",
   "module": "./src/index.js",
