@@ -1,45 +1,23 @@
 <h1 align="center">Split Rail</h1>
 
-<p align="center">
-  <b>The attribution rail that closes every TaylorURL site.</b>
-</p>
-<p align="center">
-  One React component, imported by every project,<br />
-  so changing the bar changes every site at once.
-</p>
-<p align="center">
-  <sub>Published for reading. Proprietary — see <a href="LICENSE.md">LICENSE.md</a>. Outside contributions are not accepted.</sub>
-</p>
+<p align="center">The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-2026.38.0-000000?style=for-the-badge" alt="Version 2026.38.0" />
   <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
-  <img src="https://img.shields.io/badge/dependencies-none-000000?style=for-the-badge" alt="No dependencies" />
 </p>
 
-<br />
+Split Rail is the thin bar at the very bottom of a TaylorURL site's footer. On the left it says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). On the right it has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
 
-## Why it is a package
+Each site installs it as a dependency instead of keeping its own copy, so a change here reaches every site when it bumps the version.
 
-A rail each project carries its own copy of is a rail nobody can change. Copies
-drift in path, in length and in markup, and the bar that is supposed to be one
-bar becomes as many bars as there are sites. Here it is one file with one
-version, and a site takes a change by moving the dependency.
+## What it does
 
-<table width="100%">
-  <tr>
-    <td width="50%" valign="top">
-      <h3 align="center">It paints nothing</h3>
-      <p align="center">No ground and no ink of its own. Every tone is mixed from the host's <code>currentColor</code> and the background stays transparent, so one rail lands correctly on a white brochure footer and a near-black dashboard alike.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3 align="center">It builds nowhere</h3>
-      <p align="center">Plain <code>React.createElement</code>, no JSX and no build step, so Vite, Create React App and Next.js all consume the published source as it stands.</p>
-    </td>
-  </tr>
-</table>
-
-<br />
+- Picks up its colors from the footer it sits in, so it works on light and dark footers
+- Shows the version you pass in, and the current year
+- Gives the links bigger tap targets on touch screens
+- Ships as plain JavaScript with no JSX, so it works in Vite, Create React App and Next.js without extra setup
+- Has no dependencies apart from React 17 or later
 
 ## Install
 
@@ -47,86 +25,39 @@ version, and a site takes a change by moving the dependency.
 npm install github:TaylorURL/split-rail#v2026.36.0
 ```
 
-Pin the tag. Every consuming site does, which is what makes a new rail something a
-site takes by moving its dependency rather than something that arrives on the next
-install.
+Pin a tag, so a site only picks up a new version of the bar when you move it.
 
-React 17 or later is a peer dependency; the package brings nothing else with it.
+## Usage
 
-## Use
-
-Mount it inside the footer element, not beside it.
+Put it inside the footer element, not after it. It takes its colors from its parent, so outside the footer it picks up the page background instead.
 
 ```jsx
 import SplitRail from '@taylorurl/split-rail'
 
 <footer className="site-footer">
-  {/* the footer's own content */}
+  {/* the rest of the footer */}
   <SplitRail version={__BUILD_VERSION__} />
 </footer>
 ```
 
-| Prop      | Type     | Does                                                                                       |
-| :-------- | :------- | :----------------------------------------------------------------------------------------- |
-| `version` | `string` | The build string the project already publishes. Left off, the rail shows no version.       |
-| `year`    | `number` | The year a server render used, so a page built either side of midnight agrees with itself. |
+| Prop      | Type     | What it does                                      |
+| :-------- | :------- | :------------------------------------------------ |
+| `version` | `string` | The build version to show. Leave it off for none. |
+| `year`    | `number` | Overrides the year. You'll rarely need it.        |
 
-The rail takes its colours from the element above it, which is why its place is
-inside the footer. At the app root it inherits the page body instead and reads
-as a pale strip under a dark footer.
+To change the hover color of the links, set the `--tu-accent` CSS variable.
 
-`--tu-accent` is the one colour a host can retarget, for a palette whose hover
-would otherwise fight the page.
-
-## Shipping plain JavaScript
-
-`src/index.js` calls `React.createElement` rather than using JSX. Two of the
-consuming sites build with `react-scripts`, which does not transpile JSX inside
-`node_modules`, so a JSX source file would fail their builds.
-
-## Checking a change
-
-`test/render.mjs` renders the component to static markup and asserts each marker
-the stack checklist's rail probe reads the bar by, alongside the version, year
-and colour behaviour the component promises. It names every case it ran and
-exits non-zero on a failure.
+## Working on it
 
 ```bash
 npm install
 npm test
-```
-
-`react` and `react-dom` are development dependencies, so the render has
-something to render with. Neither reaches a consuming site: that takes React
-from its own tree, through the peer dependency.
-
-Formatting and lint run over the whole tree:
-
-```bash
-npm run format:check
 npm run lint
+npm run format:check
 ```
 
-CI runs all three on every pull request, and `check` is the required context on
-both branches.
-
-## Project structure
-
-```
-split-rail/
-├── src/index.js         The component, its stylesheet, and the two links it carries
-├── test/render.mjs      The markup assertions a change has to keep passing
-├── eslint.config.js     The lint rules; .prettierrc holds the formatting ones
-├── .github/workflows/   CI (the required `check` context) and the attribution gate
-└── package.json         Exports src/index.js directly; React is a peer dependency
-```
+`npm test` renders the component to HTML and checks the markup.
 
 ## License
 
-Copyright (c) 2026 TaylorURL LLC. All rights reserved. See [LICENSE.md](LICENSE.md).
-
-<br />
-
-<p align="center">
-  <sub>One bar, one version, every site.</sub>
-</p>
+Proprietary. All rights reserved. See [LICENSE.md](LICENSE.md).
