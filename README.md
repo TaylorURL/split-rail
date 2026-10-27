@@ -4,7 +4,6 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-2026.44.0-000000?style=for-the-badge" alt="Version 2026.44.0" />
-  <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
 </p>
 
 Split Rail is the thin bar at the very bottom of a TaylorURL site's footer. On the left it says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). On the right it has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
@@ -57,6 +56,10 @@ npm run format:check
 ```
 
 `npm test` renders the component to HTML and checks the markup.
+
+## Built with
+
+Plain JavaScript and React, with the styles inlined in the component.
 
 ## License
 
