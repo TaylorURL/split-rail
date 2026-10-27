@@ -3,7 +3,7 @@
 <p align="center">The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2026.38.0-000000?style=for-the-badge" alt="Version 2026.38.0" />
+  <img src="https://img.shields.io/badge/version-2026.44.0-000000?style=for-the-badge" alt="Version 2026.44.0" />
   <img src="https://img.shields.io/badge/React-17%2B-000000?style=for-the-badge&logo=react&logoColor=white" alt="React 17 or later" />
 </p>
 
