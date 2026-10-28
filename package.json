@@ -1,6 +1,6 @@
 {
   "name": "@taylorurl/split-rail",
-  "version": "2026.44.1",
+  "version": "2026.44.2",
   "description": "Footer credit bar for TaylorURL sites, as a React component",
   "type": "module",
   "main": "./src/index.js",

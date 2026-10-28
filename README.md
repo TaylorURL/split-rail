@@ -2,7 +2,7 @@
 
 The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.
 
-<img src="https://img.shields.io/badge/version-2026.44.1-000000?style=for-the-badge" alt="Version 2026.44.1" />
+<img src="https://img.shields.io/badge/version-2026.44.2-000000?style=for-the-badge" alt="Version 2026.44.2" />
 
 It's the thin bar at the very bottom of a TaylorURL site's footer. The left side says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). The right side has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
 
