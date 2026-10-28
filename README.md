@@ -4,35 +4,19 @@ The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.
 
 <img src="https://img.shields.io/badge/version-2026.44.1-000000?style=for-the-badge" alt="Version 2026.44.1" />
 
-Split Rail is the thin bar at the very bottom of a TaylorURL site's footer. On the left it says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). On the right it has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
+It's the thin bar at the very bottom of a TaylorURL site's footer. The left side says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). The right side has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
 
-Each site installs it as a dependency instead of keeping its own copy, so a change here reaches every site when it bumps the version.
+Sites install it as a dependency instead of keeping their own copy, so a fix here reaches each site when it moves its pin.
 
-## How it works
-
-One file, `src/index.js`. It uses `createElement` instead of JSX so it runs untranspiled in Vite, Create React App and Next.js. The only peer dependency is React 17 or later.
-
-- **Colors come from the host.** The bar sets no background and no text color. Every tone is mixed from the parent's `currentColor` with `color-mix()`, so the same bar works under a white footer and a near-black one. `--tu-accent` is the one color a site can change, for link hover.
-- **Styles ship with it.** The stylesheet is a `<style>` element rendered with the bar and scoped to `[data-taylorurl-bar]`. No CSS import, no build step.
-- **Touch targets.** Under `pointer: coarse` each link grows to 44 by 44 px with padding, given back as negative margin. Only the tappable area grows. The bar goes from 40 to 45 px: the 44 px control plus the rule above it.
-- **Year without hydration drift.** The year is read in `America/Chicago`, not the machine's zone. A build in UTC would print next year for the last hours of December and disagree with the browser. The span also has `suppressHydrationWarning`.
-- **Stable markers.** TaylorURL's site checks find the bar by `[data-taylorurl-bar]`, the right side by `[data-tu-right]`, and the credit by its `taylorurl.com` link. `npm test` renders it with `renderToStaticMarkup` and checks each marker by name. Drop one and every site reports the bar as missing.
-
-<details>
-<summary>Install</summary>
+## Using it
 
 ```bash
 npm install github:TaylorURL/split-rail#v2026.36.0
 ```
 
-Pin a tag, so a site only picks up a new version of the bar when you move it.
+Pin a tag. A site should only pick up a new bar when someone moves the pin on purpose.
 
-</details>
-
-<details>
-<summary>Usage</summary>
-
-Put it inside the footer element, not after it. It takes its colors from its parent, so outside the footer it picks up the page background instead.
+Put it inside the footer element, not after it. It takes its colors from its parent, and outside the footer that's the page background.
 
 ```jsx
 import SplitRail from '@taylorurl/split-rail'
@@ -43,17 +27,19 @@ import SplitRail from '@taylorurl/split-rail'
 </footer>
 ```
 
-| Prop      | Type     | What it does                                      |
-| :-------- | :------- | :------------------------------------------------ |
-| `version` | `string` | The build version to show. Leave it off for none. |
-| `year`    | `number` | Overrides the year. You'll rarely need it.        |
+`version` is the build version to show, and the bar shows none without it. `year` overrides the year, which is almost never needed. `--tu-accent` sets the link hover color.
 
-To change the hover color of the links, set the `--tu-accent` CSS variable.
+## Inside
 
-</details>
+It's one file, `src/index.js`, written with `createElement` instead of JSX so it runs untranspiled in Vite, Create React App and Next.js. The only peer dependency is React 17 or later.
 
-<details>
-<summary>Working on it</summary>
+The bar sets no background and no text color. Every tone is mixed from the parent's `currentColor` with `color-mix()`, which is how the same bar sits under a white footer and a near-black one. Its stylesheet is a `<style>` element rendered with the bar and scoped to `[data-taylorurl-bar]`, so there's no CSS import.
+
+Under `pointer: coarse` each link grows to a 44 px square with padding, given back as negative margin, so only the tappable area changes. The bar itself goes from 40 to 45 px, the control plus the rule above it.
+
+The year is read in `America/Chicago`, not the machine's zone. A build running in UTC would print next year for the last hours of December and disagree with the browser.
+
+TaylorURL's site checks look for `[data-taylorurl-bar]`, `[data-tu-right]` and the `taylorurl.com` link. `npm test` renders the bar with `renderToStaticMarkup` and checks each one by name, because dropping one makes every site report the bar as missing.
 
 ```bash
 npm install
@@ -62,17 +48,4 @@ npm run lint
 npm run format:check
 ```
 
-`npm test` renders the component to HTML and checks the markup.
-
-</details>
-
-## Built with
-
-Plain JavaScript and React, with the styles inlined in the component.
-
-<details>
-<summary>License</summary>
-
-Proprietary. All rights reserved. See [LICENSE.md](LICENSE.md).
-
-</details>
+Proprietary, all rights reserved. See [LICENSE.md](LICENSE.md).
