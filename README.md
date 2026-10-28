@@ -2,7 +2,7 @@
 
 The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.
 
-<img src="https://img.shields.io/badge/version-2026.44.0-000000?style=for-the-badge" alt="Version 2026.44.0" />
+<img src="https://img.shields.io/badge/version-2026.44.1-000000?style=for-the-badge" alt="Version 2026.44.1" />
 
 Split Rail is the thin bar at the very bottom of a TaylorURL site's footer. On the left it says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). On the right it has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
 
