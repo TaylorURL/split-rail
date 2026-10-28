@@ -1,25 +1,22 @@
-<h1 align="center">Split Rail</h1>
+# Split Rail
 
-<p align="center">The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.</p>
+The "Built by TaylorURL" footer bar on TaylorURL sites, as a React component.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-2026.44.0-000000?style=for-the-badge" alt="Version 2026.44.0" />
-</p>
+<img src="https://img.shields.io/badge/version-2026.44.0-000000?style=for-the-badge" alt="Version 2026.44.0" />
 
 Split Rail is the thin bar at the very bottom of a TaylorURL site's footer. On the left it says "Built by TaylorURL" and links to [taylorurl.com](https://www.taylorurl.com). On the right it has a Status link to the [status page](https://www.taylorurl.com/status), the site's version and the year.
 
 Each site installs it as a dependency instead of keeping its own copy, so a change here reaches every site when it bumps the version.
 
-<details>
-<summary>What it does</summary>
+## How it works
 
-- Picks up its colors from the footer it sits in, so it works on light and dark footers
-- Shows the version you pass in, and the current year
-- Gives the links bigger tap targets on touch screens
-- Ships as plain JavaScript with no JSX, so it works in Vite, Create React App and Next.js without extra setup
-- Has no dependencies apart from React 17 or later
+One file, `src/index.js`. It uses `createElement` instead of JSX so it runs untranspiled in Vite, Create React App and Next.js. The only peer dependency is React 17 or later.
 
-</details>
+- **Colors come from the host.** The bar sets no background and no text color. Every tone is mixed from the parent's `currentColor` with `color-mix()`, so the same bar works under a white footer and a near-black one. `--tu-accent` is the one color a site can change, for link hover.
+- **Styles ship with it.** The stylesheet is a `<style>` element rendered with the bar and scoped to `[data-taylorurl-bar]`. No CSS import, no build step.
+- **Touch targets.** Under `pointer: coarse` each link grows to 44 by 44 px with padding, given back as negative margin. Only the tappable area grows. The bar goes from 40 to 45 px: the 44 px control plus the rule above it.
+- **Year without hydration drift.** The year is read in `America/Chicago`, not the machine's zone. A build in UTC would print next year for the last hours of December and disagree with the browser. The span also has `suppressHydrationWarning`.
+- **Stable markers.** TaylorURL's site checks find the bar by `[data-taylorurl-bar]`, the right side by `[data-tu-right]`, and the credit by its `taylorurl.com` link. `npm test` renders it with `renderToStaticMarkup` and checks each marker by name. Drop one and every site reports the bar as missing.
 
 <details>
 <summary>Install</summary>
